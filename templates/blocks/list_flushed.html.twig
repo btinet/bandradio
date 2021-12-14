@@ -7,7 +7,7 @@
             {% for itemArray in content %}
                 {% for post in itemArray.posts %}
                     {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
-                           <a class="list-group-item-action list-group-item px-0" href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
+                           <a class="list-group-item-action list-group-item" href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
                         {% set count = count+1 %}
                     {% endif %}
                 {% endfor %}
