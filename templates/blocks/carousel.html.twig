@@ -1,0 +1,43 @@
+<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% set break = false %}
+        {% set count = 0 %}
+        {% for itemArray in content %}
+            {% for post in itemArray.posts %}
+                {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
+                    <button type="button" data-bs-target="#carousel" {% if loop.first and not break %}class="active"{% endif %} data-bs-slide-to="{{ count }}"></button>
+                {% endif %}
+                {% set count = count+1 %}
+            {% endfor %}
+            {% set break = true %}
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% set break = false %}
+        {% set count = 0 %}
+        {% for itemArray in content %}
+            {% for post in itemArray.posts %}
+                {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
+                    <div class="carousel-item {% if loop.first and not break %}active{% endif %}">
+                        <img src="{{ vich_uploader_asset(post)|imagine_filter('carousel_image') }}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <a class="display-6 link-light" href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
+                            <p class="lead">{{ post.description }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% set count = count+1 %}
+            {% endfor %}
+            {% set break = true %}
+        {% endfor %}
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

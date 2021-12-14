@@ -1,0 +1,18 @@
+
+<div class="d-flex flex-column h-100 flex-grow-1 justify-content-between">
+    <div>
+        <h6 class="hr">{{ block.title }}</h6>
+        <div class="list-group list-group-flush">
+            {% set count = 0 %}
+            {% for itemArray in content %}
+                {% for post in itemArray.posts %}
+                    {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
+                           <a class="list-group-item-action list-group-item px-0" href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
+                        {% set count = count+1 %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    <a href="#" class="link-primary hr-link">mehr<i class="lni lni-chevron-right ms-1"></i></a>
+</div>

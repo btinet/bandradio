@@ -1,0 +1,46 @@
+<h6 class="hr">{{ block.title }}</h6>
+<div class="row gy-3">
+    {% set count = 0 %}
+    {% if content is not empty %}
+        {% for itemArray in content %}
+            {% for post in itemArray.posts %}
+                {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
+                    <div class="col-12 col-lg-6">
+                        <div class="post-with-overlay">
+                            <div class="category-caption">
+                                <a href="#">{{ post.tags.0 }}</a>
+                            </div>
+                            <div class="image-overlay">
+                                <img src="{{ vich_uploader_asset(post)|imagine_filter('media_grid_image') }}" alt="{{ post.title }}" class="img-fluid">
+                                <div class="image-overlay-caption">
+                                    <div class="image-overlay-caption-heading">
+                                        <a href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
+                                    </div>
+                                    <span class="image-overlay-caption-meta">{{ post.updated|date('d.m.Y') }}</span>
+                                </div>
+                                <a href="{{ path('app_post',{'slug':post.slug}) }}" class="overlay"></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% set count = count+1 %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        {% for tag in block.tags %}
+            <div class="col-12 col-lg-6">
+                <div class="post-with-overlay">
+                    <div class="image-overlay">
+                        <img src="{{ vich_uploader_asset(tag)|imagine_filter('media_grid_image') }}" alt="{{ tag.title }}" class="img-fluid">
+                        <div class="image-overlay-caption">
+                            <div class="image-overlay-caption-heading">
+                                <a href="#">{{ tag.title }}</a>
+                            </div>
+                        </div>
+                        <a href="#" class="overlay"></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>

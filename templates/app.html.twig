@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Bandradio Webportal
+{% endblock %}
+
+{% block body %}
+
+    {% block admin_bar %}
+        {% if app.user %}
+<section class="section bg-light">
+    <div class="container py-1">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group btn-group-sm">
+                <a class="btn btn-sm btn-link" href="{{ path('admin') }}">Admin</a>
+                <a class="btn btn-sm btn-link" href="{{ path('app_logout') }}">Logout</a>
+            </div>
+            Angemeldet als {{ app.user.username }}.
+        </div>
+    </div>
+</section>
+        {% endif %}
+    {% endblock %}
+
+    {% block pre_header %}
+        <section class="section bg-primary text-light">
+            <div class="container py-1">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <span class="d-none d-md-flex"><b>Breaking</b></span>
+                        <span class="d-none d-md-flex mx-2">|</span>
+                        <span class="text-nowrap">Neue Updates verfügbar</span>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <a href="#" class="d-flex ms-2 text-light text-decoration-none">
+                            <i class="lni lni-youtube"></i>
+                        </a>
+                        <a href="#" class="d-flex ms-2 text-light text-decoration-none">
+                            <i class="lni lni-twitter-original"></i>
+                        </a>
+                        <a href="#" class="d-flex ms-2 text-light text-decoration-none">
+                            <i class="lni lni-instagram-original"></i>
+                        </a>
+                        <a href="#" class="d-flex ms-2 text-light text-decoration-none">
+                            <i class="lni lni-facebook-original"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    {% block header %}
+        <section class="section">
+            <div class="container border-end border-start bg-white">
+                <div class="row">
+                    <div class="col text-center">
+                        <h1 class="h1 mb-0 text-primary">Bandradio</h1>
+                        <p>Die Stimme der Musik.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <nav class="navbar navbar-expand navbar-light">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse navbar-nav-horizontal" id="navbarSupportedContent">
+                                        <ul class="navbar-nav w-100 d-flex align-items-center justify-content-start justify-content-md-center">
+                                            {% if main_menu|default() %}
+                                                {% for item in main_menu %}
+                                                    {% if item.pages.slug == page.slug|default('') %}
+                                                        {% set item_css = 'active' %}
+                                                        {% else %}
+                                                            {% set item_css = '' %}
+                                                    {% endif %}
+                                                    <li class="nav-item">
+                                                        <a class="nav-link {{ item_css }}" href="{{ path('app_page',{'slug': item.pages.slug }) }}">{{ item.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                </div>
+                        </nav>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block pre_footer %}
+        <section class="section bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 mb-5 mb-md-0">
+                        <h4 class="h4">Über uns</h4>
+                        <p>Die Stimme der Musik.</p>
+                    </div>
+                    <div class="col-12 col-md-4 mb-5 mb-md-0">
+                        <h4 class="h4">Archiv</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-transparent">An item</li>
+                            <li class="list-group-item bg-transparent">A second item</li>
+                            <li class="list-group-item bg-transparent">A third item</li>
+                            <li class="list-group-item bg-transparent">A fourth item</li>
+                            <li class="list-group-item bg-transparent">And a fifth one</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4 mb-5">
+                        <h4 class="h4">Folge uns</h4>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <a href="#" class="btn btn-light d-flex text-decoration-none">
+                                <i class="lni lni-32 lni-youtube"></i>
+                            </a>
+                            <a href="#" class="btn btn-light d-flex text-decoration-none">
+                                <i class="lni lni-32 lni-twitter-original"></i>
+                            </a>
+                            <a href="#" class="btn btn-light d-flex text-decoration-none">
+                                <i class="lni lni-32 lni-instagram-original"></i>
+                            </a>
+                            <a href="#" class="btn btn-light d-flex text-decoration-none">
+                                <i class="lni lni-32 lni-facebook-original"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    {% block footer %}
+        <section class="section py-3 bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 text-center text-md-start mb-3">
+                        <span>Copyright &copy;2021 - Vapita Mediengestaltung</span>
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <h1 class="h1 mb-0 text-primary">Bandradio</h1>
+                        <p>Die Stimme der Musik.</p>
+                    </div>
+                    <div class="col-12 col-md-4 text-center text-md-start">
+                        <ul class="list-inline">
+                            {% if legal_menu|default() %}
+                                {% for item in legal_menu %}
+                                    <li class="list-inline-item">
+                                        <a href="{{ path('app_page',{'slug': item.pages.slug }) }}" class="link-secondary">{{ item.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                            <li class="list-inline-item"><a href="{{ path('app_login') }}" class="link-secondary">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+{% endblock %}

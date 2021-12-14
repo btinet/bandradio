@@ -1,0 +1,17 @@
+easy_admin:
+  entities:
+    Post:
+      class: App\Entity\Post
+      label: Artikel
+      # ...
+      list:
+        fields:
+          - { property: 'image', type: 'image', base_path: '%kernel.project_dir%/public/images/posts/featured' }
+      # ...
+      show:
+        fields:
+          - { property: 'image', type: 'image', base_path: '%kernel.project_dir%/public/images/posts/featured' }
+
+      form:
+        fields:
+          - { property: 'imageFile', template: 'vich_uploader_image.html.twig', type: 'vich_image' }

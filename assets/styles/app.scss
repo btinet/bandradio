@@ -1,0 +1,266 @@
+@import "webkit";
+
+body{
+  background-image: linear-gradient(45deg, #ffffff 25%, #f8f9fa 25%, #f8f9fa 50%, #ffffff 50%, #ffffff 75%, #f8f9fa 75%, #f8f9fa 100%);
+  background-size: 50.00px 50.00px;
+}
+
+
+
+$font-prefix: '~@ibm/plex/';
+@import "~@ibm/plex/scss/ibm-plex";
+@import "../fonts/lineicons/webfont/font-css/lineicons.css";
+
+$font-family-base: 'IBM Plex Serif', 'Georgia', Times, serif;
+$font-family-sans-serif: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+$font-family-monospace: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+$headings-font-family: 'IBM Plex Sans Condensed', 'Helvetica Neue', Arial, sans-serif;
+
+$line-height-base: 1.5;
+
+$black: #3f3f3f;
+
+@import "bootstrap";
+
+@include media-breakpoint-up(sm) {
+  .text-col-1{
+    column-count: 1;
+    column-gap: $grid-gutter-width;
+  }
+  .text-col-2{
+    column-count: 2;
+    column-rule: 1px solid $gray-500;
+    column-gap: $grid-gutter-width;
+  }
+  .text-col-3{
+    column-count: 3;
+    column-rule: 1px solid $gray-500;
+    column-gap: $grid-gutter-width;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .text-col-md-1{
+    column-count: 1;
+    column-gap: $grid-gutter-width;
+  }
+  .text-col-md-2{
+    column-count: 2;
+    column-rule: 1px solid $gray-500;
+    column-gap: $grid-gutter-width;
+  }
+  .text-col-md-3{
+    column-count: 3;
+    column-rule: 1px solid $gray-500;
+    column-gap: $grid-gutter-width;
+  }
+}
+
+.image-overlay{
+  position: relative;
+  margin-bottom: 0;
+}
+
+.image-overlay-caption{
+  position: absolute;
+  padding-left: 1.5rem;
+  padding-bottom: 3rem;
+  bottom: 0;
+  z-index: 3;
+  width: 100%;
+}
+
+.image-caption-heading{
+  display: block;
+  a{
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: $black;
+    background-color: transparent;
+    webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    o-transition: all .2s linear;
+    transition: all .2s linear;
+  }
+  a:hover{
+    color: $white;
+    background-color: $br-red;
+  }
+
+}
+
+.image-overlay-caption-heading{
+  position: relative;
+  display: block;
+  a{
+    position: absolute;
+
+    bottom: -1rem;
+    left: 0;
+    padding-left: .5rem;
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: $white;
+    background-color: transparent;
+    webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    o-transition: all .2s linear;
+    transition: all .2s linear;
+  }
+  a:hover{
+    background-color: $br-red;
+  }
+
+}
+
+.post-with-overlay{
+  position: relative;
+}
+
+.category-caption{
+  position: absolute;
+  top: 0;
+  left: 15px;
+  z-index: 3;
+  > a{
+    display: block;
+    padding: .25rem .75rem;
+    font-size: .8rem;
+    letter-spacing: -.3pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: $font-family-sans-serif;
+    text-decoration: none;
+    color: $white;
+    background-color: $br-red;
+    webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    o-transition: all .2s linear;
+    transition: all .2s linear;
+  }
+  > a:hover{
+    color: $br-red;
+    background-color: $white;
+  }
+}
+
+.image-overlay-caption-meta{
+  position: absolute;
+  bottom: .75rem;
+  left: 2rem;
+  font-size: .8rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: $white;
+  background-color: transparent;
+}
+
+.image-caption-meta{
+  font-size: .7rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: $gray-500;
+  background-color: transparent;
+}
+
+.overlay{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  z-index: 2;
+  background-color: rgba(34,34,34,.25);
+  webkit-transition: opacity .2s linear;
+  -moz-transition: opacity .2s linear;
+  o-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+
+.overlay:hover{
+  opacity: 1;
+  filter: alpha(opacity=1);
+}
+.hr-link {
+  display: block;
+  position: relative;
+  border-bottom: 1px solid $gray-500;
+  padding-bottom: .75rem;
+  text-align: center;
+  width: 100%;
+}
+
+
+
+.hr {
+  position: relative;
+  border-bottom: 1px solid $gray-500;
+  padding-bottom: .75rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.hr:after {
+  content:'';
+  position: absolute;
+  border-style: solid;
+  margin-left: -10px;
+  border-width: 10px 10px 0;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -10px;
+  left: 50%;
+}
+.hr:before {
+  content:'';
+  position: absolute;
+  border-style: solid;
+  border-width: 11px 11px 0;
+  margin-left: -11px;
+  border-color: $gray-500 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -11px;
+  left: 50%;
+}
+
+.navbar {
+  border-bottom: .1rem solid $gray-500;
+  border-top: .1rem solid $gray-500;
+}
+
+
+
+.navbar .nav-link{
+  text-transform: uppercase;
+}
+
+.navbar-nav-horizontal{
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.navbar-nav-horizontal > .nav-item{
+  display: inline-block;
+}
+
+.section > div{
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+}

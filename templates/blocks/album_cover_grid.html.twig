@@ -1,0 +1,36 @@
+<h6 class="hr">{{ block.title }}</h6>
+<div class="row gy-3">
+    {% set count = 0 %}
+    {% for itemArray in content %}
+        {% for post in itemArray.posts %}
+            {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
+                <div class="col-12 col-lg-6">
+                    <div class="post-with-overlay">
+                        <div class="category-caption">
+                            <a href="#">{{ post.tags.0 }}</a>
+                        </div>
+                        <div class="image-overlay">
+                                <img
+                                        {% if post.image %}
+                                            src="{{ vich_uploader_asset(post)|imagine_filter('album_cover') }}"
+                                            {% else %}
+                                                src="https://via.placeholder.com/1000x996?text=Vapita+Placeholder"
+                                        {% endif %}
+                                        alt="{{ post.title }}"
+                                        class="img-fluid">
+
+                            <div class="image-overlay-caption">
+                                <div class="image-overlay-caption-heading">
+                                    <a href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
+                                </div>
+                                <span class="image-overlay-caption-meta">{{ post.updated|date('d.m.Y') }}</span>
+                            </div>
+                            <a href="{{ path('app_post',{'slug':post.slug}) }}" class="overlay"></a>
+                        </div>
+                    </div>
+                </div>
+                {% set count = count+1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>

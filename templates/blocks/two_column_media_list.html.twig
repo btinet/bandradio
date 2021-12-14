@@ -1,0 +1,39 @@
+<h6 class="hr">{{ block.title }}</h6>
+<ul class="list-group list-group-flush">
+    {% set count = 0 %}
+    {% for itemArray in content %}
+        {% for post in itemArray.posts %}
+            {% if (post.isPublished and count < block.numberOfPosts) or block.numberOfPosts == 0 %}
+                <li class="list-group-item px-0">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="post-with-overlay">
+                                <div class="category-caption d-none d-md-block">
+                                    <a href="#">{{ post.tags.0 }}</a>
+                                </div>
+                                <div class="image-overlay">
+                                    <img src="{{ vich_uploader_asset(post)|imagine_filter('two_column_media_list') }}" alt="{{ post.title }}" class="img-fluid">
+                                    <a href="{{ path('app_post',{'slug':post.slug}) }}" class="overlay"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="image-caption-heading">
+                                <a href="{{ path('app_post',{'slug':post.slug}) }}">{{ post.title }}</a>
+                            </div>
+                            <div class="image-caption-description">
+                                {{ post.description }}
+                            </div>
+                            <div class="image-caption-author">
+                                <a href="#" class="link-primary small">{{ post.createdBy }}</a>
+                            </div>
+                            <span class="image-caption-meta">{{ post.created|date('d.m.Y') }}</span>
+                        </div>
+                    </div>
+                </li>
+                {% set count = count+1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</ul>
+<a href="#" class="link-primary hr-link">mehr<i class="lni lni-chevron-right ms-1"></i></a>

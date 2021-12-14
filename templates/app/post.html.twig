@@ -1,0 +1,102 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    {{ post.title|default('Bandradio.de') }}
+{% endblock %}
+
+{% block content %}
+
+
+    <section class="section">
+        <div class="container border-end border-start bg-white">
+            <div class="row">
+                <div class="col-12 col-md-8 mb-3">
+                    {{ dump(post.contentType.template.path)}}
+                    {% if page.blockHeaderPrimary|default() %}
+                        {{ include(page.blockHeaderPrimary.viewTypes.template,{
+                            'block' : page.blockHeaderPrimary,
+                            'content' : contentHeaderPrimary
+                        }) }}
+                    {% endif %}
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                    {% if page.blockSidebarPrimary|default() %}
+                        {{ include(page.blockSidebarPrimary.viewTypes.template,{
+                            'block' : page.blockSidebarPrimary,
+                            'content' : contentSidebarPrimary
+                        }) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-8 mb-3">
+                    {% if page.hasCustomContent|default() %}
+                    <div class="row">
+                        <div class="col-12 mb-5">
+                            <div class="">
+                                <h1 class="h6 hr">{{ page.title }}</h1>
+                                <p class="lead">{{ page.description }}</p>
+                                <div class="text-col-1 text-col-md-2">
+
+                                    {{ page.content|raw }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-12">
+                            {% if page.blockBodyPrimary|default() %}
+                                {{ include(page.blockBodyPrimary.viewTypes.template,{
+                                    'block' : page.blockBodyPrimary,
+                                    'content' : contentBodyPrimary
+                                }) }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-6">
+                            {% if page.blockFooterPrimary|default() %}
+                                {{ include(page.blockFooterPrimary.viewTypes.template,{
+                                    'block' : page.blockFooterPrimary,
+                                    'content' : contentFooterPrimary
+                                }) }}
+                            {% endif %}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {% if page.blockFooterSecondary|default() %}
+                                {{ include(page.blockFooterSecondary.viewTypes.template,{
+                                    'block' : page.blockFooterSecondary,
+                                    'content' : contentFooterSecondary
+                                }) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="row">
+                        <div class="col-12">
+                            {% if page.blockSidebarSecondary|default() %}
+                                {{ include(page.blockSidebarSecondary.viewTypes.template,{
+                                    'block' : page.blockSidebarSecondary,
+                                    'content' : contentSidebarSecondary
+                                }) }}
+                            {% endif %}
+                        </div>
+                        <div class="col-12 mt-3">
+                            {% if page.blockSidebarTertiary|default() %}
+                                {{ include(page.blockSidebarTertiary.viewTypes.template,{
+                                    'block' : page.blockSidebarTertiary,
+                                    'content' : contentSidebarTertiary
+                                }) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
